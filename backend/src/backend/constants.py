@@ -2,9 +2,17 @@
 
 from pathlib import Path
 
-# Path to the data directory, from this file to the project root.
-# Inside the container --> data lives at /app/data (see dockerfile).
-DATA_DIR = Path(__file__).resolve().parents[3] / "data"
+#FIX Update: find_data_dir() is not used
+# is more robust than assuming the data dir is always 3 levels up from this file.
+# Now works even if the backend is run from a different working directory (e.g., in Azure).
+def _find_data_dir() -> Path:
+    for parent in Path(__file__).resolve().parents:
+        candidate = parent / "data"
+        if candidate.is_dir():
+            return candidate
+    raise FileNotFoundError("Could not locate the data directory")
+
+DATA_DIR = _find_data_dir()
 SOLAR_CSV = DATA_DIR / "solar.csv"
 
 # Main solar eclipse types (first letters).
