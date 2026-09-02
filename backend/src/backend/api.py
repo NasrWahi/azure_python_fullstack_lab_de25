@@ -4,7 +4,7 @@ This is the main entry point for the API.
 """
 
 from fastapi import FastAPI
-from backend.src.backend import data_processing
+from backend import data_processing
 
 app = FastAPI(title="eClipseBord API", version="1.0.0")
 
