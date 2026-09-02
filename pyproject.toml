@@ -1,0 +1,13 @@
+[project]
+name = "azure-python-fullstack-lab-de25"
+version = "0.1.0"
+description = "Fullstack solar eclipse dashboard"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = []
+
+[tool.uv.workspace]
+members = [
+    "backend", 
+    "frontend"
+]
